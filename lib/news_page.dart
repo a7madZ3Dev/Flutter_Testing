@@ -16,7 +16,11 @@ class _NewsPageState extends State<NewsPage> {
   void initState() {
     super.initState();
     Future.microtask(
-      () => context.read<NewsChangeNotifier>().getArticles(),
+      () {
+        if(mounted){
+          return context.read<NewsChangeNotifier>().getArticles();
+        }
+      },
     );
   }
 
